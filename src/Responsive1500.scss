@@ -1,0 +1,36 @@
+@media screen and (max-width:1500px){
+  *{transition: all 0.1s 0s ease-in-out;}
+  header{
+    box-sizing: border-box;
+    padding: 0 5%;
+    font-size: 0.9rem;
+    .logo{
+      max-width: 20%;
+      h1{
+        width: 100%;
+        .mainLogo{
+          object-fit: cover;
+        }
+      }
+    }
+
+    nav{
+    justify-content: flex-end;
+    .header-ul{
+      font-size: 2.2rem;
+    }
+    .side-tab{
+      width: 26%;
+      gap: 30%;
+      .user-content{
+        width: 80%;
+      }
+      .hamburger{
+        width: 20%;
+      }
+    }
+  }
+}
+  
+  
+}

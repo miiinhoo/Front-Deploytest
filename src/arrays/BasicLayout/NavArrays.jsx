@@ -1,0 +1,16 @@
+export const pathToNavIdMap = {
+    "/itemlist": 1,
+    "/sellercustomer":1,
+    "/orderlist": 1,
+    "/orderreceive": 1, 
+    "/partlist": 2,
+    "/buyercustomer": 2,
+    "/buyerdelivery":2,
+    "/partorder":2,
+    "/plan": 3,
+    "/planlist": 3,
+    "/bomlist":3,
+    "/stocklist": 4,
+    "/stock": 4,
+    "/sellamount":4,
+};

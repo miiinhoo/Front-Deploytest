@@ -1,0 +1,389 @@
+// 전체 선택
+*{margin:0;padding:0;
+  font-family: __Pretendard_dc5901, __Pretendard_Fallback_dc5901;
+}
+:root{
+  --siteMainColor:#a67b5b;
+  --bgColor:rgb(245, 245, 245);
+  --whiteFont: rgb(255,255,255);
+  --blackFont:#000;
+  --visualColor:#333;
+  --borderColor: #555;
+  --varColor: #888;
+  --addColor: #2196F3;
+  --fixColor:#FF9800;
+  --delColor:#E53935;
+}
+body{
+  overflow: hidden;
+}
+@keyframes direction {
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(180deg);
+  }
+}
+// 초기화 작업
+li{list-style: none; float: left;}
+a{text-decoration: none; color: inherit;display: block;}
+h2{display: block;width: calc(100% - 10%);text-indent: calc(-15%);}
+h3{display: block;font-size: 23px;}
+
+
+// 공통 li addClass
+li.selected{
+  font-weight: 600;
+  color: var(--blackFont);
+}
+
+// react의 몸통부분
+#root{
+  width: 100%;
+  height: 100vh;
+  min-height: 900px;
+  .MAIN_WRAPPER{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+
+// 헤더 설정
+header{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 15%;
+  border-bottom: 1px solid;
+  position: relative;
+  overflow: visible;
+    .logo{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 15%;
+      height: 100%;
+      h1{
+        height: inherit;
+        a{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          width: inherit;
+          height: inherit;
+          overflow: hidden;
+        }
+        .mainLogo{
+          max-width: 200px;
+          max-height: 125px;
+          object-fit: contain;
+        }
+      }
+      
+    }
+      nav{
+        flex: 1;
+        display: flex;
+        justify-content: space-evenly;
+        height: 100%;
+        .header-ul{
+          width: 70%;
+          height: inherit;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: 70px;
+          font-size: 2.3rem;
+        }
+        .side-tab{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 20%;
+          min-width: 170px;
+          .user-content{
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 12vw;
+            height: 100%;
+            padding: 0 5%;
+            background-color: var(--bgColor);
+            border: 1px solid var(--borderColor);
+            p{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              gap: 10px;
+              text-align: center;
+              .loginbtn{
+                cursor: pointer;
+                background-color: var(--bgColor);
+                padding: 8px 0;
+                border-radius: 15px;
+                border: 1px solid var(--borderColor);
+              }
+            }
+          }
+          .hamburger{
+            overflow: visible !important;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 7%;
+            width: 28%;
+            height: 28%;
+
+            span{
+              overflow: visible !important;
+              display: block;
+              width: 100%;
+              height: calc((100% - 2*7%) / 3);
+              position: relative;
+
+              &::after{
+                content: "";
+                display: block;
+                width: 100%;
+                height: 75%;
+                background-color: var(--blackFont);
+                border-radius: 15px;
+                position: absolute;
+                top:0;
+                left:0;
+                transition: transform 0.5s ease;
+              }
+            }
+
+            // hover 시 span::after 애니메이션 적용
+            &:hover span::after{
+              animation: direction 0.5s linear forwards;
+            }
+
+            span:nth-child(1)::after {
+              animation-duration: 0.5s;
+            }
+            span:nth-child(2)::after {
+              animation-duration: 0.6s;
+            }
+            span:nth-child(3)::after {
+              animation-duration: 0.7s;
+            }
+            // hover 시 회전
+            .hamburger:hover span::after {
+              transform: rotate(180deg);
+            }
+
+          }
+
+        }
+        
+    }
+    .guidemenu-wrapper{
+      pointer-events: none;
+      width: 100%;
+      height: 100vh;
+      position: absolute;
+      top: 0;right: 0;
+      background-color: white;
+      z-index: 99999;
+      opacity: 0;
+      transition: all 1s ease-in-out;
+      filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.50));
+      &.show{
+        pointer-events: all;
+        opacity: 1;
+      }
+      .guidemenu-title{
+          width: 100%;
+          font-size: 30px;
+          line-height: 70px;
+          font-weight: bold;
+          text-align: center;
+      }
+      .guidemenu-content{
+        display: grid;
+        grid-template-columns: 1fr 1fr; 
+        grid-template-rows: 1fr 1fr;   
+        gap: 10vw;
+        padding: 5vw 3vw 0 3vw;
+        box-sizing: border-box;
+        
+        .guidemenu-lists{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.65rem;
+          font-size: 23px;
+          h3{
+            font-size: 28px;
+          }
+          a{
+            display: block;
+            position: relative;
+            &:hover::after{
+              text-decoration: underline;
+              opacity: 1;
+              transition: all 0.8s 0s ease-in-out;
+            }
+            &::after{
+              content: "";
+              display: block;
+              opacity: 0;
+              width: 9px;
+              height: 9px;
+              border-radius: 50%;
+              background-color: black;
+              position: absolute;
+              top:1px; right:-15px;
+            }
+          }
+        }
+      }
+    }
+}
+
+// 화면 좌측 부분 aside바 스타일링 세팅
+
+
+.main_aside{
+  width: 15%;
+  height: 100%;
+  border-right: 1px solid;
+  .main_article{
+    width: 100%;
+    .aside-ul{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      font-size: 25px;
+    }
+  }  
+}
+
+// aside와 header의 li들에 모두 스타일링 세팅
+.aside-ul>li,.header-ul>li{
+    position: relative;
+    color: var(--borderColor);
+    &::after{
+      content: "";
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+      position: absolute;
+      bottom: 0;left: 0;
+      transform: scaleX(0);
+      transition: all 1s 0s ease-in-out;
+    }
+    &.selected::after{
+      transform: scaleX(1);
+    }
+}
+
+
+
+// main_content부분 , 메인.
+.main_content{
+  display: flex;
+  width: 100%;
+  height: calc(100% - 15%);
+  .main_body{
+    flex:1;
+    height: 100%;
+    .gridbox{
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      height: 100%;
+      .grid{
+        width: 50%;
+        height: 50%;
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+// 페이지들마다 테이블 스타일링
+.page-wrapper{
+  height: calc(100vh - 17.5%);
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* List페이지 테이블 스타일링 세팅 */
+.table-wrapper {
+  width: 100%;
+  height: 60%;
+  max-height: 400px;   /* 테이블 높이 제한 */
+  overflow-y: auto;    /* 내부 스크롤 */
+  overflow-x: hidden;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  &.stock{
+    height: 32%;
+  }
+  table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed; /* ✅ 열 너비 고정 */
+  thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: lightgray;
+  }
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 13px 10px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  td{
+    text-align: right;
+  }
+}
+}
+
+
+
+
+
+
+
+
+// 검색창
+.top-searchbar{
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 10px;
+  input{
+    height: 30px;
+    border-radius: 10px;
+    text-indent: 10px;
+  }
+  .refresh{
+    height: 38px;
+    position: static;
+    line-height: 10px;
+  }
+}

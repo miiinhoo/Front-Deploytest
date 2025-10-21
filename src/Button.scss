@@ -1,0 +1,78 @@
+// 버튼scss
+
+.backbtn-wrapper{
+    float: left;
+    width: 10%;
+    height: 40px;
+    position: relative;
+}
+$class: submit,fixbtn,delbtn,backbtn,refresh,login,join;
+$backColors:var(--addColor),var(--fixColor),var(--delColor),#c4c4c4,#26a358,var(--siteMainColor),var(--addColor);
+$right: 3%,13.5%,0,unset,unset,27%,5%;
+$left:unset,unset,unset,1%,unset,unset,unset;
+$bottom: 5%,5%,5%,unset,unset,5%,5%;
+
+
+@each $cls,$clr,$rt,$lt,$bt in zip(
+    $class, 
+    $backColors,
+    $right,
+    $left,
+    $bottom){
+    button.#{$cls}{
+        background-color: $clr;
+        color: var(--whiteFont);
+        display: inline-block;  
+        padding: 10px 25px;
+        border: 2px solid var(--varColor);
+        border-radius: 10px;
+        position: absolute;
+        right: $rt;
+        left: $lt;
+        bottom: $bt;
+        transform: scale(1);
+        
+        &:hover{
+            cursor: pointer;
+            color: var(--blackFont);
+            border: 2px solid var(--borderColor);
+            transform: scale(1.01);
+            filter: grayscale(0.25);
+            transition: all 0.3s 0s linear;
+        }
+    }
+}
+
+
+.closeBtn{
+    cursor: pointer;
+    box-sizing: border-box;
+    float: right;
+    display:block;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    margin: 15px 15px 0 0;
+    position: relative;
+    background-color: unset;
+    transform: rotate(0);
+    &::after,&::before{
+        content: "";
+        display: block;
+        width: 3px;
+        height: 28px;
+        border-radius: 7px;
+        background-color: black;
+        position: absolute;
+        top:50%;left:50%;
+        transform: translate(-45%,-45%) rotate(45deg);
+    }
+    &::before{
+        transform: translate(-45%,-45%) rotate(-45deg);
+    }
+    &:hover{
+        transform: rotate(360deg);
+        transition: all 1s ease-in-out;
+    }
+}
